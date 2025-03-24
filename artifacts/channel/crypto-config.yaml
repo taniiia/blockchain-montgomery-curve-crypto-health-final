@@ -4,7 +4,7 @@ OrdererOrgs:
   # Orderer
   # ---------------------------------------------------------------------------
   - Name: Orderer
-    Domain: example.com
+    Domain: pesuhospital.com
     EnableNodeOUs: true
 
     # ---------------------------------------------------------------------------
@@ -29,10 +29,10 @@ OrdererOrgs:
 # ---------------------------------------------------------------------------
 PeerOrgs:
   # ---------------------------------------------------------------------------
-  # Org1
+  # PESUHospitalBLR
   # ---------------------------------------------------------------------------
-  - Name: Org1
-    Domain: org1.example.com
+  - Name: PESUHospitalBLR
+    Domain: blr.pesuhospital.com
     EnableNodeOUs: true
 
     Template:
@@ -43,10 +43,19 @@ PeerOrgs:
         - "localhost"
 
     Users:
-      Count: 1
+      Doctor:
+        Count: 2
+      Patient:
+        Count: 2
+      Pharmacist:
+        Count: 1
+      Insurance:
+        Count: 1
+      Receptionist:
+        Count: 1
 
-  - Name: Org2
-    Domain: org2.example.com
+  - Name: PESUHospitalKPM
+    Domain: kpm.pesuhospital.com
     EnableNodeOUs: true
 
     Template:
@@ -57,4 +66,13 @@ PeerOrgs:
         - "localhost"
 
     Users:
-      Count: 1
+      Doctor:
+        Count: 2
+      Patient:
+        Count: 2
+      Pharmacist:
+        Count: 1
+      Insurance:
+        Count: 1
+      Receptionist:
+        Count: 1
