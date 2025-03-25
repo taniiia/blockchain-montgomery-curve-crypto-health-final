@@ -211,13 +211,23 @@ Orderer: &OrdererDefaults
 
     EtcdRaft:
         Consenters:
-        - Host: orderer.example.com
+        - Host: orderer.pesuhospital.com
           Port: 7050
-          ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
-          ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
+          ClientTLSCert: crypto-config/ordererOrganizations/pesuhospital.com/orderers/orderer.pesuhospital.com/tls/server.crt
+          ServerTLSCert: crypto-config/ordererOrganizations/pesuhospital.com/orderers/orderer.pesuhospital.com/tls/server.crt
+        - Host: orderer2.pesuhospital.com
+          Port: 8050
+          ClientTLSCert: crypto-config/ordererOrganizations/pesuhospital.com/orderers/orderer2.pesuhospital.com/tls/server.crt
+          ServerTLSCert: crypto-config/ordererOrganizations/pesuhospital.com/orderers/orderer2.pesuhospital.com/tls/server.crt
+        - Host: orderer3.pesuhospital.com
+          Port: 9050
+          ClientTLSCert: crypto-config/ordererOrganizations/pesuhospital.com/orderers/orderer3.pesuhospital.com/tls/server.crt
+          ServerTLSCert: crypto-config/ordererOrganizations/pesuhospital.com/orderers/orderer3.pesuhospital.com/tls/server.crt
 
     Addresses:
         - orderer.example.com:7050
+        - orderer2.example.com:8050
+        - orderer3.example.com:9050
 
     # Batch Timeout: The amount of time to wait before creating a batch
     BatchTimeout: 2s
@@ -302,18 +312,7 @@ Channel: &ChannelDefaults
 ################################################################################
 Profiles:
 
-    BasicChannel:
-        Consortium: SampleConsortium
-        <<: *ChannelDefaults
-        Application:
-            <<: *ApplicationDefaults
-            Organizations:
-                - *Org1
-                - *Org2
-            Capabilities:
-                <<: *ApplicationCapabilities
-
-    OrdererGenesis:
+    HospitalOrdererGenesis:
         <<: *ChannelDefaults
         Capabilities:
             <<: *ChannelCapabilities
@@ -322,18 +321,18 @@ Profiles:
             OrdererType: etcdraft
             EtcdRaft:
                 Consenters:
-                - Host: orderer.example.com
+                - Host: orderer.pesuhospital.com
                   Port: 7050
-                  ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
-                  ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
-                - Host: orderer2.example.com
+                  ClientTLSCert: crypto-config/ordererOrganizations/pesuhospital.com/orderers/orderer.pesuhospital.com/tls/server.crt
+                  ServerTLSCert: crypto-config/ordererOrganizations/pesuhospital.com/orderers/orderer.pesuhospital.com/tls/server.crt
+                - Host: orderer2.pesuhospital.com
                   Port: 8050
-                  ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/server.crt
-                  ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/server.crt
-                - Host: orderer3.example.com
+                  ClientTLSCert: crypto-config/ordererOrganizations/pesuhospital.com/orderers/orderer2.pesuhospital.com/tls/server.crt
+                  ServerTLSCert: crypto-config/ordererOrganizations/pesuhospital.com/orderers/orderer2.pesuhospital.com/tls/server.crt
+                - Host: orderer3.pesuhospital.com
                   Port: 9050
-                  ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.crt
-                  ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.crt
+                  ClientTLSCert: crypto-config/ordererOrganizations/pesuhospital.com/orderers/orderer3.pesuhospital.com/tls/server.crt
+                  ServerTLSCert: crypto-config/ordererOrganizations/pesuhospital.com/orderers/orderer3.pesuhospital.com/tls/server.crt
                 # - Host: orderer4.example.com
                 #   Port: 10050
                 #   ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/server.crt
@@ -348,13 +347,60 @@ Profiles:
                 - orderer3.example.com:9050
                 # - orderer4.example.com:10050
                 # - orderer5.example.com:11050
-
             Organizations:
-            - *OrdererOrg
-            Capabilities:
-                <<: *OrdererCapabilities
+                - *OrdererOrg
+                - *PESUHospitalBLR
+                - *PESUHospitalKPM
         Consortiums:
-            SampleConsortium:
+            HospitalConsortium:
                 Organizations:
-                - *Org1
-                - *Org2
+                    - *PESUHospitalBLR
+                    - *PESUHospitalKPM
+
+    RegistrationChannel:
+        Consortium: HospitalConsortium
+        <<: *ChannelDefaults
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+                - *PESUHospitalBLR
+                - *PESUHospitalKPM
+            Capabilities:
+                <<: *ApplicationCapabilities
+    
+    PatientMedicationChannel:
+        Consortium: HospitalConsortium
+        <<: *ChannelDefaults
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+                - *PESUHospitalBLR
+                - *PESUHospitalKPM
+            Capabilities:
+                <<: *ApplicationCapabilities
+    
+    BillingChannel:
+        Consortium: HospitalConsortium
+        <<: *ChannelDefaults
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+                - *PESUHospitalBLR
+                - *PESUHospitalKPM
+            Capabilities:
+                <<: *ApplicationCapabilities
+    
+    CommunicationChannel:
+        Consortium: HospitalConsortium
+        <<: *ChannelDefaults
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+                - *PESUHospitalBLR
+                - *PESUHospitalKPM
+            Capabilities:
+                <<: *ApplicationCapabilities
+
+                
+
+            
