@@ -8,11 +8,11 @@
 #cryptogen generate --config=./crypto-config.yaml --output=./crypto-config/
 
 # System channel
-# SYS_CHANNEL="sys-channel"
-# REG_CHANNEL="registration-channel"
-# PM_CHANNEL="patient-medication-channel"
-# BILL_CHANNEL="billing-channel"
-# COMM_CHANNEL="communication-channel"
+SYS_CHANNEL="sys-channel"
+REG_CHANNEL="registration-channel"
+PM_CHANNEL="patient-medication-channel"
+BILL_CHANNEL="billing-channel"
+COMM_CHANNEL="communication-channel"
 
 # #create channel-artifacts if not present
 # mkdir -p ./channel-artifacts
