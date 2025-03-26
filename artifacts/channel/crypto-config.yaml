@@ -43,7 +43,7 @@ PeerOrgs:
         - "localhost"
 
     Users:
-      Count: 5
+      Count: 1
 
   - Name: PESUHospitalKPM
     Domain: kpm.pesuhospital.com
@@ -57,4 +57,4 @@ PeerOrgs:
         - "localhost"
 
     Users:
-      Count: 5
+      Count: 1

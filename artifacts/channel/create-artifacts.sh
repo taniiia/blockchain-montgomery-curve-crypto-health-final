@@ -18,10 +18,10 @@ COMM_CHANNEL="communication-channel"
 # mkdir -p ./channel-artifacts
 
 # #Generate System Genesis block 
-# echo "Generating genesis block for system channel ($SYS_CHANNEL)..."
-# configtxgen -profile HospitalOrdererGenesis -configPath . -channelID $SYS_CHANNEL -outputBlock ./channel-artifacts/genesis.block
+echo "Generating genesis block for system channel ($SYS_CHANNEL)..."
+configtxgen -profile HospitalOrdererGenesis -configPath . -channelID $SYS_CHANNEL -outputBlock ./channel-artifacts/genesis.block
 
-# #Generate channel configuration transactions for each channel
+#Generate channel configuration transactions for each channel
 # echo "Generating channel configuration block for Registration Channel ($REG_CHANNEL)..."
 # configtxgen -profile RegistrationChannel -configPath . -channelID $REG_CHANNEL -outputCreateChannelTx ./channel-artifacts/registration-channel.tx
 
@@ -35,27 +35,27 @@ COMM_CHANNEL="communication-channel"
 # configtxgen -profile CommunicationChannel -configPath . -channelID $COMM_CHANNEL -outputCreateChannelTx ./channel-artifacts/communication-channel.tx
 
 
-echo "#### Generating anchor peer update for PESUHospitalBLRMSP #####"
-configtxgen -profile RegistrationChannel -configPath . -channelID $REG_CHANNEL -outputAnchorPeersUpdate ./channel-artifacts/PESUHospitalBLRMSPanchors_registration.tx -asOrg PESUHospitalBLRMSP
+# echo "#### Generating anchor peer update for PESUHospitalBLRMSP #####"
+# configtxgen -profile RegistrationChannel -configPath . -channelID $REG_CHANNEL -outputAnchorPeersUpdate ./channel-artifacts/PESUHospitalBLRMSPanchors_registration.tx -asOrg PESUHospitalBLRMSP
 
-configtxgen -profile PatientMedicationChannel -configPath . -channelID $PM_CHANNEL -outputAnchorPeersUpdate ./channel-artifacts/PESUHospitalBLRMSPanchors_patient_medication.tx -asOrg PESUHospitalBLRMSP
+# configtxgen -profile PatientMedicationChannel -configPath . -channelID $PM_CHANNEL -outputAnchorPeersUpdate ./channel-artifacts/PESUHospitalBLRMSPanchors_patient_medication.tx -asOrg PESUHospitalBLRMSP
 
-configtxgen -profile BillingChannel -configPath . -channelID $BILL_CHANNEL -outputAnchorPeersUpdate ./channel-artifacts/PESUHospitalBLRMSPanchors_billing.tx -asOrg PESUHospitalBLRMSP
+# configtxgen -profile BillingChannel -configPath . -channelID $BILL_CHANNEL -outputAnchorPeersUpdate ./channel-artifacts/PESUHospitalBLRMSPanchors_billing.tx -asOrg PESUHospitalBLRMSP
 
-configtxgen -profile CommunicationChannel -configPath . -channelID $COMM_CHANNEL -outputAnchorPeersUpdate ./channel-artifacts/PESUHospitalBLRMSPanchors_communication.tx -asOrg PESUHospitalBLRMSP
-
-
-echo "#### Generating anchor peer update for PESUHospitalKPMMSP #####"
-configtxgen -profile RegistrationChannel -configPath . -channelID $REG_CHANNEL -outputAnchorPeersUpdate ./channel-artifacts/PESUHospitalKPMMSPanchors.tx -asOrg PESUHospitalKPMMSP
-
-configtxgen -profile PatientMedicationChannel -configPath . -channelID $PM_CHANNEL -outputAnchorPeersUpdate ./channel-artifacts/PESUHospitalKPMMSPanchors_patient_medication.tx -asOrg PESUHospitalKPMMSP
-
-configtxgen -profile BillingChannel -configPath . -channelID $BILL_CHANNEL -outputAnchorPeersUpdate ./channel-artifacts/PESUHospitalKPMMSPanchors_billing.tx -asOrg PESUHospitalKPMMSP
-
-configtxgen -profile CommunicationChannel -configPath . -channelID $COMM_CHANNEL -outputAnchorPeersUpdate ./channel-artifacts/PESUHospitalKPMMSPanchors_communication.tx -asOrg PESUHospitalKPMMSP
+# configtxgen -profile CommunicationChannel -configPath . -channelID $COMM_CHANNEL -outputAnchorPeersUpdate ./channel-artifacts/PESUHospitalBLRMSPanchors_communication.tx -asOrg PESUHospitalBLRMSP
 
 
+# echo "#### Generating anchor peer update for PESUHospitalKPMMSP #####"
+# configtxgen -profile RegistrationChannel -configPath . -channelID $REG_CHANNEL -outputAnchorPeersUpdate ./channel-artifacts/PESUHospitalKPMMSPanchors.tx -asOrg PESUHospitalKPMMSP
 
+# configtxgen -profile PatientMedicationChannel -configPath . -channelID $PM_CHANNEL -outputAnchorPeersUpdate ./channel-artifacts/PESUHospitalKPMMSPanchors_patient_medication.tx -asOrg PESUHospitalKPMMSP
+
+# configtxgen -profile BillingChannel -configPath . -channelID $BILL_CHANNEL -outputAnchorPeersUpdate ./channel-artifacts/PESUHospitalKPMMSPanchors_billing.tx -asOrg PESUHospitalKPMMSP
+
+# configtxgen -profile CommunicationChannel -configPath . -channelID $COMM_CHANNEL -outputAnchorPeersUpdate ./channel-artifacts/PESUHospitalKPMMSPanchors_communication.tx -asOrg PESUHospitalKPMMSP
+
+
+#----------------------------------------------------------------------------------------------------------------
 # # channel name defaults to "mychannel"
 # CHANNEL_NAME="mychannel"
 
