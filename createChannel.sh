@@ -51,7 +51,7 @@ createChannel(){
     echo "Creating channel '$CHANNEL_NAME'..."
     setGlobalsForPeer0BLR
     
-    peer channel create -o localhost:7050 -c $CHANNEL_NAME \
+    peer channel create -o orderer.pesuhospital.com:7050 -c $CHANNEL_NAME \
     --ordererTLSHostnameOverride orderer.pesuhospital.com \
     -f ./artifacts/channel/${CHANNEL_NAME}.tx --outputBlock ./channel-artifacts/${CHANNEL_NAME}.block \
     --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA

@@ -249,7 +249,7 @@ services:
     environment:
       - FABRIC_LOGGING_SPEC=info
       - ORDERER_GENERAL_LOGLEVEL=info
-      - CORE_PEER_LOCALMSPID=PESUHospitalBLRMSPMSP
+      - CORE_PEER_LOCALMSPID=PESUHospitalBLRMSP
 
       - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=artifacts_test
 
